@@ -1,0 +1,24 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% require 'bcrypt' %>
+
+one:
+  id: 99
+  email: email@email.com
+  password_digest: 1234
+
+two:
+  email: MyString
+  password_digest: :MyString
+
+three:
+  id: 100
+  email: "ejemplo1@mail.com"
+  full_name: "ejemplo1"
+  password_digest: <%= BCrypt::Password.create('1234') %>
+  isadmin: false
+
+four:
+  id: 101
+  email: "admin@mail.com"
+  password_digest: <%= BCrypt::Password.create('admin1234') %>
+  isadmin: true
