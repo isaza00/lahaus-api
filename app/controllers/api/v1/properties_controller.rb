@@ -63,8 +63,8 @@ class Api::V1::PropertiesController < ApplicationController
 
   # UPDATE PROPERTY PUT api/v1/properties/<property_id>
   def update
-    property = Property.find(params[:id])
-    if property.update(propety_params)
+    property = Property.find(params[:property_id])
+    if property.update(property_params)
       render json: property, status: :ok
     else
       render json: { errors: property.errors }, status: 422

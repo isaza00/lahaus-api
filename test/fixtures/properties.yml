@@ -1,7 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 6
   city: MyString
+  price: 5000000000
 
 two:
+  id: 7
+  price: 50
+  built_type: "casa"
   city: MyString
+
+three:
+  id: 1
+  price: 50000000
+  city: MyString
+
+four:
+  id: 2
+  price: 50000000
+  city: MyString
+  built_type: "Apartment"
