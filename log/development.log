@@ -15980,3 +15980,196 @@ Migrating to AddColumnToPhotos (20201015003144)
   [1m[36mPhoto Create (0.5ms)[0m  [1m[32mINSERT INTO "photos" ("url", "property_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["url", "http://url.com"], ["property_id", 4], ["created_at", "2020-10-15 19:49:44.118394"], ["updated_at", "2020-10-15 19:49:44.118394"]]
   [1m[35m (11.6ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (19.9ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mPhoto Load (37.5ms)[0m  [1m[34mSELECT "photos".* FROM "photos" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mProperty Load (64.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/api/v1/login" for 127.0.0.1 at 2020-10-19 15:19:25 -0500
+  [1m[35m (28.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::UsersController#login as JSON
+  Parameters: {"email"=>"ejemplo1@mail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"ejemplo1@mail.com"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ejemplo1@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:63:in `login'
+Completed 200 OK in 284ms (Views: 1.0ms | ActiveRecord: 6.1ms | Allocations: 7667)
+
+
+Started POST "/api/v1/users/1/properties/1/photos" for 127.0.0.1 at 2020-10-19 15:22:45 -0500
+Processing by Api::V1::PhotosController#create as JSON
+  Parameters: {"url"=>"https://images.unsplash.com/photo-1546540749-1642fed507fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60", "user_id"=>"1", "property_id"=>"1", "photo"=>{"url"=>"https://images.unsplash.com/photo-1546540749-1642fed507fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"}}
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 170)
+
+
+Started POST "/api/v1/users/1/properties/1/photos" for 127.0.0.1 at 2020-10-19 15:24:01 -0500
+Processing by Api::V1::PhotosController#create as JSON
+  Parameters: {"url"=>"https://images.unsplash.com/photo-1546540749-1642fed507fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60", "user_id"=>"1", "property_id"=>"1", "photo"=>{"url"=>"https://images.unsplash.com/photo-1546540749-1642fed507fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/photos_controller.rb:48:in `create'
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/photos_controller.rb:49:in `create'
+[31mUnpermitted parameters: :format, :user_id, :photo[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+  [1m[36mPhoto Create (73.3ms)[0m  [1m[32mINSERT INTO "photos" ("url", "property_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["url", "https://images.unsplash.com/photo-1546540749-1642fed507fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"], ["property_id", 1], ["created_at", "2020-10-19 20:24:01.397562"], ["updated_at", "2020-10-19 20:24:01.397562"]]
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+  [1m[35m (22.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+[ActiveJob] Enqueued PhotoQualityJob (Job ID: f408a071-a25f-48ec-9813-0ed91f991794) to Async(default) with arguments: 6
+Completed 200 OK in 381ms (Views: 0.4ms | ActiveRecord: 103.0ms | Allocations: 49610)
+
+
+[ActiveJob] [PhotoQualityJob] [f408a071-a25f-48ec-9813-0ed91f991794] Performing PhotoQualityJob (Job ID: f408a071-a25f-48ec-9813-0ed91f991794) from Async(default) enqueued at 2020-10-19T20:24:01Z with arguments: 6
+[ActiveJob] [PhotoQualityJob] [f408a071-a25f-48ec-9813-0ed91f991794]   [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+[ActiveJob] [PhotoQualityJob] [f408a071-a25f-48ec-9813-0ed91f991794]   ↳ app/jobs/photo_quality_job.rb:5:in `perform'
+[ActiveJob] [PhotoQualityJob] [f408a071-a25f-48ec-9813-0ed91f991794] Error performing PhotoQualityJob (Job ID: f408a071-a25f-48ec-9813-0ed91f991794) from Async(default) in 123.12ms: NoMethodError (undefined method `chomp' for nil:NilClass):
+/home/norman/lahaus-api/app/jobs/photo_quality_job.rb:8:in `perform'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:40:in `block in perform_now'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:112:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.8.5/lib/i18n.rb:313:in `with_locale'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/core_ext/time/zones.rb:66:in `use_zone'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/timezones.rb:9:in `block (2 levels) in <module:Timezones>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:25:in `block (4 levels) in <module:Logging>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/notifications.rb:180:in `block in instrument'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/notifications.rb:180:in `instrument'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:24:in `block (3 levels) in <module:Logging>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:45:in `block in tag_logger'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/tagged_logging.rb:80:in `block in tagged'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/tagged_logging.rb:28:in `tagged'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/tagged_logging.rb:80:in `tagged'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:45:in `tag_logger'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:21:in `block (2 levels) in <module:Logging>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:139:in `run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:39:in `perform_now'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:25:in `block in execute'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:112:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/railtie.rb:43:in `block (4 levels) in <class:Railtie>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/reloader.rb:72:in `block in wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/reloader.rb:71:in `wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/railtie.rb:42:in `block (3 levels) in <class:Railtie>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:139:in `run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:23:in `execute'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:363:in `run_task'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:352:in `block (3 levels) in create_worker'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `loop'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `block (2 levels) in create_worker'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `catch'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block in create_worker'
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/api/v1/users/1/properties/" for 127.0.0.1 at 2020-10-19 15:32:29 -0500
+Processing by Api::V1::PropertiesController#create as JSON
+  Parameters: {"city"=>"medellin", "hood"=>"laureles", "built_type"=>"Casa", "user_id"=>"1", "property"=>{"built_type"=>"Casa", "hood"=>"laureles", "city"=>"medellin"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/properties_controller.rb:52:in `create'
+[31mUnpermitted parameters: :hood, :format, :property[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/properties_controller.rb:54:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/properties_controller.rb:54:in `create'
+  [1m[36mProperty Create (23.4ms)[0m  [1m[32mINSERT INTO "properties" ("built_type", "city", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["built_type", "Casa"], ["city", "medellin"], ["user_id", 1], ["created_at", "2020-10-19 20:32:29.273092"], ["updated_at", "2020-10-19 20:32:29.273092"]]
+  ↳ app/controllers/api/v1/properties_controller.rb:54:in `create'
+  [1m[35m (24.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/properties_controller.rb:54:in `create'
+Completed 200 OK in 68ms (Views: 0.5ms | ActiveRecord: 50.9ms | Allocations: 7831)
+
+
+Started POST "/api/v1/users/1/properties/1/photos" for 127.0.0.1 at 2020-10-19 15:33:11 -0500
+Processing by Api::V1::PhotosController#create as JSON
+  Parameters: {"url"=>"https://images.unsplash.com/photo-1546540749-1642fed507fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60", "user_id"=>"1", "property_id"=>"1", "photo"=>{"url"=>"https://images.unsplash.com/photo-1546540749-1642fed507fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/photos_controller.rb:48:in `create'
+  [1m[36mProperty Load (0.6ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/photos_controller.rb:49:in `create'
+[31mUnpermitted parameters: :format, :user_id, :photo[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+  [1m[36mPhoto Create (0.7ms)[0m  [1m[32mINSERT INTO "photos" ("url", "property_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["url", "https://images.unsplash.com/photo-1546540749-1642fed507fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60"], ["property_id", 1], ["created_at", "2020-10-19 20:33:11.339734"], ["updated_at", "2020-10-19 20:33:11.339734"]]
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+  [1m[35m (30.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+[ActiveJob] Enqueued PhotoQualityJob (Job ID: 5c36796e-d644-462d-b374-f312cbbda998) to Async(default) with arguments: 7
+[ActiveJob] [PhotoQualityJob] [5c36796e-d644-462d-b374-f312cbbda998] Performing PhotoQualityJob (Job ID: 5c36796e-d644-462d-b374-f312cbbda998) from Async(default) enqueued at 2020-10-19T20:33:11Z with arguments: 7
+Completed 200 OK in 60ms (Views: 3.7ms | ActiveRecord: 33.0ms | Allocations: 7831)
+
+
+[ActiveJob] [PhotoQualityJob] [5c36796e-d644-462d-b374-f312cbbda998]   [1m[36mPhoto Load (0.8ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+[ActiveJob] [PhotoQualityJob] [5c36796e-d644-462d-b374-f312cbbda998]   ↳ app/jobs/photo_quality_job.rb:5:in `perform'
+[ActiveJob] [PhotoQualityJob] [5c36796e-d644-462d-b374-f312cbbda998] Error performing PhotoQualityJob (Job ID: 5c36796e-d644-462d-b374-f312cbbda998) from Async(default) in 97.57ms: NoMethodError (undefined method `chomp' for nil:NilClass):
+/home/norman/lahaus-api/app/jobs/photo_quality_job.rb:8:in `perform'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:40:in `block in perform_now'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:112:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.8.5/lib/i18n.rb:313:in `with_locale'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/core_ext/time/zones.rb:66:in `use_zone'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/timezones.rb:9:in `block (2 levels) in <module:Timezones>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:25:in `block (4 levels) in <module:Logging>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/notifications.rb:180:in `block in instrument'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/notifications.rb:180:in `instrument'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:24:in `block (3 levels) in <module:Logging>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:45:in `block in tag_logger'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/tagged_logging.rb:80:in `block in tagged'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/tagged_logging.rb:28:in `tagged'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/tagged_logging.rb:80:in `tagged'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:45:in `tag_logger'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:21:in `block (2 levels) in <module:Logging>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:139:in `run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:39:in `perform_now'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:25:in `block in execute'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:112:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/railtie.rb:43:in `block (4 levels) in <class:Railtie>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/reloader.rb:72:in `block in wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/reloader.rb:71:in `wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/railtie.rb:42:in `block (3 levels) in <class:Railtie>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:139:in `run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:23:in `execute'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:363:in `run_task'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:352:in `block (3 levels) in create_worker'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `loop'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `block (2 levels) in create_worker'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `catch'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block in create_worker'
