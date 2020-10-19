@@ -52,7 +52,7 @@ class Api::V1::PropertiesController < ApplicationController
       user = User.find(params[:user_id])
       property = Property.new(property_params)
       if property.save
-        render json: property, status: :ok
+        render json: property, status: 201
       else
         render json: { errors: property.errors.messages }, status: 422
       end
