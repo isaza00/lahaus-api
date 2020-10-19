@@ -1,0 +1,71 @@
+lahaus
+1. build python
+2. ensayar el script python
+3. model test properties. (
+  sebastian:
+    t.string "project"
+    t.string "built_type"
+    t.string "price"
+    t.string "address"
+    t.string "apt"
+    t.string "hood"
+    t.string "city"
+    t.string "private_area"
+    t.bigint "user_id"
+  santiago:
+    t.string "admon"
+    t.string "build_area"
+    t.string "social_class"
+    t.string "state"
+    t.boolean "elevator"
+    t.string "common_areas"
+    t.string "property_tax"
+    t.string "rooms"
+  norman: 
+    t.string "bathrooms"
+    t.string "half_bathrooms"
+    t.string "parking_lot"
+    t.boolean "utility_room"
+    t.boolean "empty_property"
+    t.boolean "inhabitants"
+    t.string "rent"
+    t.string "mortgage"
+)
+4. model test photos
+5. controller test photos
+6. model test user new attr
+7. usar el token para peticiones en front
+8. implementar que si user entra a admin y no esta logueado, redireccionar a login
+
+holberton
+
+ 1. Progress #advanced
+
+In a section named “Progress”, answer:
+
+    On a scale of 1 to 10, how would you rate the progress you’ve made this week?
+    How are you measuring your progress?
+    Discuss why you have given your team (or yourself) this rating.
+    Provide an assessment of whether your project will be completed on time as specified in your Project Proposal and MVP definition.
+
+2. Challenges mandatory
+
+In a section named “Challenges”, answer:
+
+    What challenges have you discovered about your project that were not obvious when you did your research?
+    How have you had to change your plan to adapt to these unearthed challenges?
+    Describe any unexpected non-technical challenges?
+
+3. Collaboration/Communication mandatory
+
+In a section named “Collaboration”, answer:
+
+If you are working in a team:
+
+    Discuss the challenges and/or success your team has had with collaborating
+
+4. Project Updates mandatory
+
+In a section named “Project Updates”:
+
+    Outline any changes you are making to your portfolio project’s deliverables. Provide reasoning for each.
