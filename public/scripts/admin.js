@@ -1,5 +1,8 @@
 const $ = window.$;
 
+if (!window.token) {
+  window.location.href = 'login.html';
+}
 
 $(function () {
   const searchParams = new URLSearchParams(window.location.search);

@@ -1,6 +1,4 @@
 lahaus
-1. build python
-2. ensayar el script python
 3. model test properties. (
   sebastian:
     t.string "project"
@@ -31,15 +29,17 @@ lahaus
     t.string "rent"
     t.string "mortgage"
 )
-4. model test photos
-5. controller test photos
-6. model test user new attr
-7. usar el token para peticiones en front
-8. implementar que si user entra a admin y no esta logueado, redireccionar a login
+4. model test photos - sebastian
+5. controller test photos -norman
+6. model test user new attr (santiago)
+7. arreglar swagger
+
+8. arreglar el pequeño flash visual cuando se entra a admin sin loguear
+8. agregar header con token para borrar propiedad
 
 holberton
 
- 1. Progress #advanced
+ 1. Progress #advanced - Norman
 
 In a section named “Progress”, answer:
 
@@ -48,7 +48,7 @@ In a section named “Progress”, answer:
     Discuss why you have given your team (or yourself) this rating.
     Provide an assessment of whether your project will be completed on time as specified in your Project Proposal and MVP definition.
 
-2. Challenges mandatory
+2. Challenges mandatory  santiago
 
 In a section named “Challenges”, answer:
 
@@ -56,7 +56,7 @@ In a section named “Challenges”, answer:
     How have you had to change your plan to adapt to these unearthed challenges?
     Describe any unexpected non-technical challenges?
 
-3. Collaboration/Communication mandatory
+3. Collaboration/Communication mandatory - sebastian
 
 In a section named “Collaboration”, answer:
 
@@ -64,8 +64,8 @@ If you are working in a team:
 
     Discuss the challenges and/or success your team has had with collaborating
 
-4. Project Updates mandatory
+4. Project Updates mandatory 
 
-In a section named “Project Updates”:
+In a section named “Project Updates”: - santiago
 
     Outline any changes you are making to your portfolio project’s deliverables. Provide reasoning for each.
