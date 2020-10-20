@@ -65,14 +65,14 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Property.count', +1) do
       post "/api/v1/users/100/properties/", headers: {"Authorization": "Bearer #{@user_token}"}
     end
-    assert_response 200
+    assert_response 201
   end
 
   test "create: checks the creation of a property without all the entries" do
     assert_difference('Property.count', +1) do
       post "/api/v1/users/100/properties/", headers: {"Authorization": "Bearer #{@user_token}"}, params: {built_type: "Casa", price: 5000000, admon: 80000, rooms: 3}
     end
-    assert_response 200
+    assert_response 201
     property = JSON.parse(@response.body)
     assert_equal property["built_type"], "Casa"
     assert_equal property["price"], "5000000"
@@ -84,7 +84,7 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Property.count', +1) do
       post "/api/v1/users/100/properties/", headers: {"Authorization": "Bearer #{@user_token}"}, params: {city: "Medellin", ruum: 5000000, property_tax: 777777, bathrooms: 5}
     end
-    assert_response 200
+    assert_response 201
     property = JSON.parse(@response.body)
     puts @response.body
     assert_equal property["city"], "Medellin"
@@ -97,7 +97,7 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
     assert_difference('Property.count', +1) do
       post "/api/v1/users/100/properties/", headers: {"Authorization": "Bearer #{@user_token}"}, params: {social_class: 3, rent: "si", half_bathrooms: 7}
     end
-    assert_response 200
+    assert_response 201
     property = JSON.parse(@response.body)
     puts property
     assert_equal property["social_class"], "3"
