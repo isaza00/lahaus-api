@@ -16,7 +16,8 @@ $(function () {
         const userId = result.user.id;
         const token = result.token;
         window.location.reload();
-        window.location.href = 'admin.html?userId=' + userId + '&token=' + token;
+        window.location.href = 'index?userId=' + userId + '&token=' + token;
+        alert("hola");
       }
     });
   });

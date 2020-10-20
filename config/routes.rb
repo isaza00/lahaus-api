@@ -19,4 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/login', to: 'front_views#login'
+  get '/index', to: 'front_views#index'
+
 end
