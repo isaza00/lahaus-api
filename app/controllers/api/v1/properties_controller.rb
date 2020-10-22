@@ -14,7 +14,7 @@ class Api::V1::PropertiesController < ApplicationController
       end
       render json: { properties: properties }, status: :ok
     rescue => e
-      render json: { error: e.message }, status: 404
+      render json: { errors: e.message }, status: 404
     end
   end
 
