@@ -235,7 +235,7 @@ $(function () {
     alert(userId);
     window.location.href = 'login.html';
   }
-  const url = 'http://localhost:3000/api/v1/users/' + userId + '/properties';
+  const url = 'http://lahaus.herokuapp.com/api/v1/users/' + userId + '/properties';
   $('.title').text('Panel de Administración');
   $.ajax({
     url: url,
