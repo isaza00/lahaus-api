@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
   def show
     begin
       user = User.find(params[:user_id])
-      render json: { user: user }, status: :ok
+      render json: { users: user }, status: :ok
     rescue
       render json: { errors: e.message}, status: 404
     end
@@ -24,7 +24,7 @@ class Api::V1::UsersController < ApplicationController
     begin
       user = User.find(params[:user_id])
       if user.destroy
-        render json: { user: user }, status: 204
+        render json: { users: user }, status: 204
       else
         render json: { errors: user.errors.messages }, status: 422
       end
@@ -38,7 +38,7 @@ class Api::V1::UsersController < ApplicationController
     begin
       user = User.find(params[:user_id])
       if user.update(user_params)
-        render json: user, status: :ok
+        render json: { users: user }, status: :ok
       else
         render json: { errors: user.errors.messages }, status: 422
       end
@@ -52,7 +52,7 @@ class Api::V1::UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       token = encode_token({user_id: user.id})
-      render json: {user: user, token: token}, status: :created
+      render json: {users: user, token: token}, status: :created
     else
       render json: { errors: user.errors.messages }, status: 422
     end
@@ -64,7 +64,7 @@ class Api::V1::UsersController < ApplicationController
     if user && user.authenticate(params[:password])
       token = encode_token({user_id: user.id})
       puts token
-      render json: {user: user, token: token}, status: :ok
+      render json: {users: user, token: token}, status: :ok
     else
       render json: { errors: "Invalid username or password" }, status: :unauthorized #401
     end

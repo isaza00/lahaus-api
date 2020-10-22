@@ -18,7 +18,7 @@ class Api::V1::PhotosController < ApplicationController
   def show
     begin
       photo = Photo.find(params[:photo_id])
-      render json: { photo: photo }, status: :ok
+      render json: { photos: photo }, status: :ok
     rescue => e
       render json: { errors: e.message}, status: 404
     end
@@ -50,7 +50,7 @@ class Api::V1::PhotosController < ApplicationController
       photo = Photo.new(photo_params)
       if photo.save
         PhotoQualityJob.perform_later photo.id
-        render json: { photo: photo }, status: 201
+        render json: { photos: photo }, status: 201
       else
         render json: { errors: photo.errors.messages }, status: 422
       end
@@ -63,7 +63,7 @@ class Api::V1::PhotosController < ApplicationController
   def update
     photo = Photo.find(params[:id])
     if photo.update(photo_params)
-      render json: { photo: photo }, status: :ok
+      render json: { photos: photo }, status: :ok
     else
       render json: { errors: photo.errors }, status: 422
     end
