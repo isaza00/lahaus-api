@@ -14,7 +14,7 @@ class Api::V1::PropertiesController < ApplicationController
       end
       render json: { properties: properties }, status: :ok
     rescue => e
-      render json: { error: e.message }, status: 404
+      render json: { errors: e.message }, status: 404
     end
   end
 
@@ -52,7 +52,7 @@ class Api::V1::PropertiesController < ApplicationController
       user = User.find(params[:user_id])
       property = Property.new(property_params)
       if property.save
-        render json: property, status: 201
+        render json: { properties: property }, status: 201
       else
         render json: { errors: property.errors.messages }, status: 422
       end
@@ -65,7 +65,7 @@ class Api::V1::PropertiesController < ApplicationController
   def update
     property = Property.find(params[:property_id])
     if property.update(property_params)
-      render json: property, status: :ok
+      render json: { properties: property }, status: :ok
     else
       render json: { errors: property.errors }, status: 422
     end
@@ -74,11 +74,11 @@ class Api::V1::PropertiesController < ApplicationController
   private
 
   def property_params
-    params.permit(:built_type, :city, :price, :address, :admon, :build_area,
-                  :private_area, :social_class, :state, :elevator, :common_areas,
-                  :property_tax, :rooms, :bathrooms, :half_bathrooms, :parking_lot,
-                  :utility_room, :empty_property, :inhabitants, :rent, :morgage,
-                  :user_id)
+    params.permit(:project, :built_type, :price, :address, :apt, :hood, 
+                  :city, :private_area, :admon, :build_area, :social_class, 
+                  :state, :elevator, :common_areas, :property_tax, :rooms,
+                  :bathrooms, :half_bathrooms, :parking_lot, :utility_room,
+                  :empty_property, :inhabitants, :rent, :morgage, :user_id)
   end
 
 end

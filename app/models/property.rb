@@ -2,6 +2,9 @@ class Property < ApplicationRecord
   belongs_to :user
   has_many :photos
   validates :user_id, presence: true
+  validates :hood, length: { maximum: 255 }, allow_nil: true
+  validates :project, length: { maximum: 255 }, allow_nil: true
+  validates :apt, length: { maximum: 10 }, allow_nil: true
   validates :built_type, inclusion: { in: %w(Casa Apartamento Apartaestudio Lote Penthouse Loft Duplex Casafinca)}, allow_nil: true
   validates :city, length: { maximum: 255 }, allow_nil: true
   validates :price, length: { minimum: 7, maximum: 12 }, allow_nil: true
