@@ -194,8 +194,9 @@
             </form>
           </div>
         </div>
+
   <script>
-  const url = 'http://lahaus.herokuapp.com/api/v1/login';
+  const url = '/api/v1/login';
   const $ = window.$;
   $(function () {
     $('#login-btn').click(function (e) {
@@ -213,8 +214,7 @@
           const userId = result.user.id;
           const token = result.token;
           window.location.reload();
-          window.location.href = 'index?userId=' + userId + '&token=' + token;
-          alert("hola");
+          window.location.href = '/index?userId=' + userId + '&token=' + token;
         }
       });
     });

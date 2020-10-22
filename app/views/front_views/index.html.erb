@@ -232,10 +232,9 @@ $(function () {
   const token = searchParams.get('token');
   const userId = searchParams.get('userId');
   if (!token) {
-    alert(userId);
-    window.location.href = 'login.html';
+    window.location.href = '/login';
   }
-  const url = 'http://lahaus.herokuapp.com/api/v1/users/' + userId + '/properties';
+  const url = '/api/v1/users/' + userId + '/properties';
   $('.title').text('Panel de Administración');
   $.ajax({
     url: url,
