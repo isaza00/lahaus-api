@@ -74,11 +74,11 @@ class Api::V1::PropertiesController < ApplicationController
   private
 
   def property_params
-    params.permit(:built_type, :city, :price, :address, :admon, :build_area,
-                  :private_area, :social_class, :state, :elevator, :common_areas,
-                  :property_tax, :rooms, :bathrooms, :half_bathrooms, :parking_lot,
-                  :utility_room, :empty_property, :inhabitants, :rent, :morgage,
-                  :user_id)
+    params.permit(:project, :built_type, :price, :address, :apt, :hood, 
+                  :city, :private_area, :admon, :build_area :social_class, 
+                  :state, :elevator, :common_areas, :property_tax, :rooms,
+                  :bathrooms, :half_bathrooms, :parking_lot, :utility_room,
+                  :empty_property, :inhabitants, :rent, :morgage, :user_id)
   end
 
 end
