@@ -22,3 +22,6 @@ PUT api/v1/users/<id>
 DELETE api/v1/users/<id>
 # create user
 POST api/v1/users/
+
+![Swagger image](https://imgur.com/qbUxSnC.png)
+![Swagger image2](https://imgur.com/YqkxCrp.png)
