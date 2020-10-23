@@ -78,7 +78,8 @@ class Api::V1::PropertiesController < ApplicationController
                   :city, :private_area, :admon, :build_area, :social_class, 
                   :state, :elevator, :common_areas, :property_tax, :rooms,
                   :bathrooms, :half_bathrooms, :parking_lot, :utility_room,
-                  :empty_property, :inhabitants, :rent, :morgage, :user_id)
+                  :empty_property, :inhabitants, :rent, :morgage, :user_id,
+                  :rent_desition)
   end
 
 end

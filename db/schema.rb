@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_15_003144) do
+ActiveRecord::Schema.define(version: 2020_10_23_123904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,8 @@ ActiveRecord::Schema.define(version: 2020_10_15_003144) do
     t.boolean "empty_property"
     t.boolean "inhabitants"
     t.string "rent"
-    t.string "mortgage"
+    t.boolean "rent_desition"
+    t.boolean "mortgage"
     t.index ["built_type"], name: "index_properties_on_built_type"
     t.index ["city"], name: "index_properties_on_city"
     t.index ["hood"], name: "index_properties_on_hood"

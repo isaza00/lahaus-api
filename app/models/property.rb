@@ -25,6 +25,7 @@ class Property < ApplicationRecord
   validates :empty_property, inclusion: { in: [true, false] }, allow_nil: true
   validates :inhabitants, inclusion: { in: [true, false] }, allow_nil: true
   validates :rent, length:  { maximum: 8 }, allow_nil: true
-  validates :mortgage, length:  { maximum: 8 }, allow_nil: true
+  validates :mortgage, inclusion: { in: [true, false] }, allow_nil: true
+  validates :rent_desition, inclusion: { in: [true, false] }, allow_nil: true
 
 end
