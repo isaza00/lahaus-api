@@ -73,7 +73,7 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
       post "/api/v1/users/100/properties/", headers: {"Authorization": "Bearer #{@user_token}"}, params: {built_type: "Casa", price: 5000000, admon: 80000, rooms: 3}
     end
     assert_response 201
-    property = JSON.parse(@response.body)
+    property = JSON.parse(@response.body)["properties"]
     assert_equal property["built_type"], "Casa"
     assert_equal property["price"], "5000000"
     assert_equal property["admon"], "80000"
@@ -85,7 +85,7 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
       post "/api/v1/users/100/properties/", headers: {"Authorization": "Bearer #{@user_token}"}, params: {city: "Medellin", ruum: 5000000, property_tax: 777777, bathrooms: 5}
     end
     assert_response 201
-    property = JSON.parse(@response.body)
+    property = JSON.parse(@response.body)["properties"]
     puts @response.body
     assert_equal property["city"], "Medellin"
     assert_equal property["property_tax"], "777777"
@@ -98,7 +98,7 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
       post "/api/v1/users/100/properties/", headers: {"Authorization": "Bearer #{@user_token}"}, params: {social_class: 3, rent: "si", half_bathrooms: 7}
     end
     assert_response 201
-    property = JSON.parse(@response.body)
+    property = JSON.parse(@response.body)["properties"]
     puts property
     assert_equal property["social_class"], "3"
     assert_equal property["rent"], "si"
@@ -109,12 +109,12 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
   test "check update of the city" do
     put "/api/v1/users/100/properties/1", headers: { "Authorization": "Bearer #{@user_token}" }, params: {city: "Sabaneta"}
     assert_response :ok
-    assert_equal JSON.parse(@response.body)["city"], "Sabaneta"
+    assert_equal JSON.parse(@response.body)["properties"]["city"], "Sabaneta"
   end
 
   test "check update without all the params" do
     put "/api/v1/users/100/properties/1", headers: { "Authorization": "Bearer #{@user_token}" }, params: {built_type: "Casa"}
     assert_response :ok
-    assert_equal JSON.parse(@response.body)["built_type"], "Casa"
+    assert_equal JSON.parse(@response.body)["properties"]["built_type"], "Casa"
   end
 end
