@@ -46,7 +46,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "authorized for admin to show any user" do
     get "/api/v1/users/100", headers: {"Authorization": "Bearer #{@admin_token}" }
     assert_response :ok
-    assert_equal JSON.parse(@response.body)["user"]["email"], users(:three).email
+    assert_equal JSON.parse(@response.body)["users"]["email"], users(:three).email
   end
 
   test "unauthorized user to show any other user" do
@@ -58,7 +58,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "authorized user to show his own user" do
     get "/api/v1/users/100", headers: {"Authorization": "Bearer #{@user_token}" }
     assert_response :ok
-    assert_equal JSON.parse(@response.body)["user"]["email"], users(:three).email
+    assert_equal JSON.parse(@response.body)["users"]["email"], users(:three).email
   end
 
   test "authorized for user to delete himself" do
@@ -87,7 +87,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       post "/api/v1/users/", params: {email: "ejemplo2@mail.com", password: "1234", full_name: "ejemplo2", cellphone: "3001234567"}
     end
     assert_response 201
-    user = JSON.parse(@response.body)["user"]
+    user = JSON.parse(@response.body)["users"]
     assert_equal user["email"], "ejemplo2@mail.com"
     assert_equal user["full_name"], "ejemplo2"
     assert_equal user["cellphone"], "3001234567"
@@ -97,7 +97,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "check correct update of user full_name" do
     put "/api/v1/users/100/", headers: { "Authorization": "Bearer #{@user_token}" }, params: {full_name: "newname"}
     assert_response :ok
-    assert_equal JSON.parse(@response.body)["full_name"], "newname"
+    assert_equal JSON.parse(@response.body)["users"]["full_name"], "newname"
   end
 
   test "Tests the update method" do
