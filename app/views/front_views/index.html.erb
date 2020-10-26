@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap User Management Data Table</title>
+<title>User Management</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -13,6 +13,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <script>
+const searchParams = new URLSearchParams(window.location.search);
+  const token = searchParams.get('token');
+  const userId = searchParams.get('userId');
+  if (!token) {
+    window.location.href = '/login';
+  }
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 });
@@ -228,12 +234,6 @@ table.table .avatar {
 const $ = window.$;
 
 $(function () {
-  const searchParams = new URLSearchParams(window.location.search);
-  const token = searchParams.get('token');
-  const userId = searchParams.get('userId');
-  if (!token) {
-    window.location.href = '/login';
-  }
   const url = '/api/v1/users/' + userId + '/properties';
   $('.title').text('Panel de Administración');
   $.ajax({

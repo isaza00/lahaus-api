@@ -30,8 +30,8 @@ lahaus
     t.string "mortgage"
 )
 4. model test photos - sebastian
-5. controller test photos -norman
+Done 5. controller test photos -norman
 6. model test user new attr (santiago)
 
-8. arreglar el pequeño flash visual cuando se entra a admin sin loguear
+Done 8. arreglar el pequeño flash visual cuando se entra a admin sin loguear
 8. agregar header con token para borrar propiedad
