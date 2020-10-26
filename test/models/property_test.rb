@@ -16,7 +16,7 @@ class PropertyTest < ActiveSupport::TestCase
   end
 
   test "Should create a property" do
-    property = Property.create(user_id: 99, city:"Pizza", hood:"Belen")
+    property = Property.new(user_id: 99, city:"Pizza", hood:"Belen")
     assert property.save, "Saved a property without a built_type"
   end
 
@@ -31,6 +31,12 @@ class PropertyTest < ActiveSupport::TestCase
     property = Property.find_by(user_id: 99)
     property.delete
     assert_not Property.exists?(user_id: 99), "Didn't delete the property"
+  end
+
+  test "Should create a property with a valid elevator attribute" do
+    property = Property.new(user_id:99, build_area:"hola", elevator:"4")
+    assert_not property.save
+    puts property
   end
 
 end

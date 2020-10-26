@@ -34,4 +34,7 @@ Done 5. controller test photos -norman
 6. model test user new attr (santiago)
 
 Done 8. arreglar el pequeño flash visual cuando se entra a admin sin loguear
-8. agregar header con token para borrar propiedad
+9. agregar header con token para borrar propiedad
+Done 10. root envia a /index
+11. agregar letrero en login box when login fails
+12. implementar funcion de change password
