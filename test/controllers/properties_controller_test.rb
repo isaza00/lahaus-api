@@ -40,13 +40,6 @@ class PropertiesControllerTest < ActionDispatch::IntegrationTest
     assert_equal '{"errors":"Couldn\'t find Property with \'id\'=4"}', @response.body
   end
 
-  test "show: show properties with a valid property id" do
-    get '/api/v1/users/100/properties/6', headers: {"Authorization": "Bearer #{@user_token}" }
-    assert_response :ok
-    properties_test = @response.body
-    assert_equal properties_test, @response.body
-  end
-
   test "destroy: destroy an invalid property id" do
     delete '/api/v1/users/100/properties/8', headers: {"Authorization": "Bearer #{@user_token}"}
     assert_response 404

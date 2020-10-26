@@ -42,8 +42,8 @@ class Api::V1::PropertiesController < ApplicationController
     end
   end
 
-  def update
-  end
+  #def update
+  #end
 
   #POST /api/v1/users/<id>/properties/
   def create

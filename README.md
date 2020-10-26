@@ -11,17 +11,5 @@ include header:
 to get JWT-token as json response,
 create new user or login, params: {email, password}
 
-Actions
-# show all users
-GET api/v1/users
-# show user with id = <id>
-GET api/v1/users/<id>
-# show user with id = <id>
-PUT api/v1/users/<id>
-# show user with id = <id>
-DELETE api/v1/users/<id>
-# create user
-POST api/v1/users/
-
 ![Swagger image](https://imgur.com/qbUxSnC.png)
 ![Swagger image2](https://imgur.com/YqkxCrp.png)
