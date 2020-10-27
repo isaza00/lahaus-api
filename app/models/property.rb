@@ -14,18 +14,18 @@ class Property < ApplicationRecord
   validates :private_area, length: { maximum: 255 }, allow_nil: true
   validates :social_class, inclusion: { in: %w(1 2 3 4 5 6 Industrial) }, allow_nil: true
   validates :state, length: { maximum: 255 }, allow_nil: true
-  validates :elevator, inclusion: { in: ["true", "false"] }, allow_nil: true
+  validates :elevator, inclusion: { in: %w(true false) }, allow_nil: true
   validates :common_areas, length: { maximum: 255 }, allow_nil: true
   validates :property_tax, length: { minimum: 6, maximum: 12 }, allow_nil: true
   validates :rooms, length: { maximum: 3 }, allow_nil: true
   validates :bathrooms, length: { maximum: 2 }, allow_nil: true
   validates :half_bathrooms, length: { maximum: 2 }, allow_nil: true
   validates :parking_lot, length: { maximum: 2 }, allow_nil: true
-  validates :utility_room, inclusion: { in: ["true", "false"] }, allow_nil: true
-  validates :empty_property, inclusion: { in: ["true", "false"] }, allow_nil: true
-  validates :inhabitants, inclusion: { in: ["true", "false"] }, allow_nil: true
+  validates :utility_room, inclusion: { in: %w(true false) }, allow_nil: true
+  validates :empty_property, inclusion: { in: %w(true false) }, allow_nil: true
+  validates :inhabitants, inclusion: { in: %w(true false) }, allow_nil: true
   validates :rent, length:  { maximum: 8 }, allow_nil: true
-  validates :mortgage, inclusion: { in: ["true", "false"] }, allow_nil: true
-  validates :rent_desition, inclusion: { in: ["true", "false"] }, allow_nil: true
+  validates :mortgage, inclusion: { in: %w(true false) }, allow_nil: true
+  validates :rent_desition, inclusion: { in: %w(true false) }, allow_nil: true
 
 end

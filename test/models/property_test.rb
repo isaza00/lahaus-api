@@ -46,24 +46,13 @@ class PropertyTest < ActiveSupport::TestCase
   end
 
   test "Should create a property with a state" do
-    property = Property.new(user_id:99, state:"holiwis", social_class:"hola")
+    property = Property.new(user_id:99, state:"holiwis", social_class:5)
     assert property.save
   end
 
   test "Should not create a property without a valid elevator attribute" do
     property = Property.new(user_id:99, build_area:"hola", elevator:"5")
-    assert property.save
-  end
-
-  test "test empty_property" do
-    property = Property.new(user_id:99, build_area:"hola", empty_property:"5")
-    assert_equal false, property.valid?
-    /assert_not property.save/
-  end
-
-  test "Should create a property with a valid elevator attribute" do
-    property = Property.new(user_id:99, build_area:"hola", elevator:true)
-    assert property.save
+    assert_not property.save
   end
 
   test "Should create a property with a common_areas attribute" do
@@ -97,12 +86,6 @@ class PropertyTest < ActiveSupport::TestCase
     property = Property.find_by(user_id: 99)
     property.delete
     assert_not Property.exists?(user_id: 99), "Didn't delete the property"
-  end
-
-  test "Should create a property with a valid elevator attribute" do
-    property = Property.new(user_id:99, build_area:"hola", elevator:"4")
-    assert_not property.save
-    puts property
   end
 
 end

@@ -211,7 +211,7 @@
         data: JSON.stringify(data),
         dataType: 'json',
         success: function (result) {
-          const userId = result.user.id;
+          const userId = result.users.id;
           const token = result.token;
           window.location.reload();
           window.location.href = '/index?userId=' + userId + '&token=' + token;
