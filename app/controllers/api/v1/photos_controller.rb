@@ -72,7 +72,7 @@ class Api::V1::PhotosController < ApplicationController
   private
 
   def photo_params
-    params.permit(:url, :property_id, :accepted)
+    params.permit(:url, :property_id, :location)
   end
 
 end
