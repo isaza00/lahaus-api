@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_163321) do
+ActiveRecord::Schema.define(version: 2020_10_27_220030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_163321) do
     t.string "apt"
     t.string "hood"
     t.string "city"
+    t.string "elevator"
     t.string "private_area"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -42,7 +43,6 @@ ActiveRecord::Schema.define(version: 2020_10_27_163321) do
     t.string "build_area"
     t.string "social_class"
     t.string "state"
-    t.boolean "elevator"
     t.string "common_areas"
     t.string "property_tax"
     t.string "rooms"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_163321) do
     t.boolean "mortgage"
     t.index ["built_type"], name: "index_properties_on_built_type"
     t.index ["city"], name: "index_properties_on_city"
+    t.index ["elevator"], name: "index_properties_on_elevator"
     t.index ["hood"], name: "index_properties_on_hood"
     t.index ["price"], name: "index_properties_on_price"
     t.index ["user_id"], name: "index_properties_on_user_id"
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_163321) do
     t.boolean "isadmin", default: false
     t.string "full_name"
     t.string "cellphone"
+    t.string "id_card"
     t.index ["email"], name: "index_users_on_email"
   end
 
