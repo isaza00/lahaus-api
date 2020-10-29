@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user1 = User.create(email: "ejemplo1@mail.com", password: "1234", full_name: "juan", cellphone: "3001234567")
+user1 = User.create(email: "ejemplo1@mail.com", password: "1234", full_name: "juan", cellphone: "3001234567", id_card: "1152218834")
 user2 = User.create(email: "ejemplo2@mail.com", password: "1234", full_name: "pedro", cellphone: "3001234567")
-user3 = User.create(email: "ejemplo3@mail.com", password: "1234", full_name: "lucas", cellphone: "3001234567")
+user3 = User.create(email: "ejemplo3@mail.com", password: "1234", full_name: "lucas", cellphone: "3001234567", id_card: "7777777777777")
 user4 = User.create(email: "ejemplo4@mail.com", password: "1234", full_name: "mateo", cellphone: "3001234567")
 user5 = User.create(email: "ejemplo5@mail.com", password: "1234", full_name: "judas", cellphone: "3001234567")
 admin = User.create(email: "admin@mail.com", password: "admin1234", isadmin: true, full_name: "admin", cellphone: "3001234567")

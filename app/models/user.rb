@@ -28,6 +28,12 @@ class User < ApplicationRecord
   validates :full_name, presence: true,
             length: { minimum: 3, maximum: 255 },
             allow_nil: true, on: :update
+  validates :id_card, presence: true,
+            length: { minimum: 7, maximum: 255 },
+            allow_nil: false, on: :create
+  validates :id_card, presence: true,
+            length: { minimum: 3, maximum: 255 },
+            allow_nil: true, on: :update
   validates :cellphone, presence: true,
             length: { maximum: 10 },
             format: { with: VALID_PHONE_REGEX},
