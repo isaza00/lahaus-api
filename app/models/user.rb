@@ -30,14 +30,14 @@ class User < ApplicationRecord
             allow_nil: true, on: :update
   validates :id_card, presence: true,
             length: { minimum: 7, maximum: 255 },
-            allow_nil: false, on: :create
+            allow_nil: true, on: :create
   validates :id_card, presence: true,
             length: { minimum: 3, maximum: 255 },
             allow_nil: true, on: :update
   validates :cellphone, presence: true,
             length: { maximum: 10 },
             format: { with: VALID_PHONE_REGEX},
-            allow_nil: false, on: :create
+            allow_nil: true, on: :create
   validates :cellphone, presence: true,
             length: { maximum: 10 },
             format: { with: VALID_PHONE_REGEX},

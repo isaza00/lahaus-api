@@ -29,13 +29,14 @@ lahaus
     t.string "rent"
     t.string "mortgage"
 )
-4. model test photos - sebastian
+Done 4. model test photos - sebastian
 Done 5. controller test photos -norman
 6. model test user new attr (santiago)
-7. agregar rutas para paginas estaticas
+Done 7. agregar rutas para paginas estaticas
 Done 8. arreglar el pequeño flash visual cuando se entra a admin sin loguear
 9. agregar header con token para borrar propiedad
 Done 10. root envia a /index
 11. agregar letrero en login box when login fails
 12. implementar funcion de change password
-13. agregar campo de location al modelo de photo
+Done 13. agregar campo de location al modelo de photo
+14. poner begin and rescue en methodo de correct user en caso de que User.find retorne error
