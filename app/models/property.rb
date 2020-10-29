@@ -1,6 +1,6 @@
 class Property < ApplicationRecord
   belongs_to :user
-  has_many :photos
+  has_many :photos, dependent: :destroy
   validates :user_id, presence: true
   validates :hood, length: { maximum: 255 }, allow_nil: true
   validates :project, length: { maximum: 255 }, allow_nil: true

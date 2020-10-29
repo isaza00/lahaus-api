@@ -610,3 +610,372 @@ Completed 201 Created in 268ms (Views: 0.6ms | ActiveRecord: 151.8ms | Allocatio
 /home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `block (2 levels) in create_worker'
 /home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `catch'
 /home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block in create_worker'
+Started POST "/api/v1/users/1/properties/1/photos" for 127.0.0.1 at 2020-10-27 11:58:13 -0500
+Processing by Api::V1::PhotosController#create as JSON
+  Parameters: {"url"=>"http://image", "location"=>"Sala", "user_id"=>"1", "property_id"=>"1", "photo"=>{"url"=>"http://image", "location"=>"Sala"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/photos_controller.rb:48:in `create'
+  [1m[36mProperty Load (0.8ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/photos_controller.rb:49:in `create'
+[31mUnpermitted parameters: :format, :user_id, :photo[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+  [1m[36mPhoto Create (0.4ms)[0m  [1m[32mINSERT INTO "photos" ("url", "property_id", "created_at", "updated_at", "location") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["url", "http://image"], ["property_id", 1], ["created_at", "2020-10-27 16:58:13.477608"], ["updated_at", "2020-10-27 16:58:13.477608"], ["location", "Sala"]]
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+  [1m[35m (60.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/photos_controller.rb:51:in `create'
+[ActiveJob] Enqueued PhotoQualityJob (Job ID: 9a6f1f31-6a0a-49be-84a2-360078fc3663) to Async(default) with arguments: 9
+Completed 201 Created in 158ms (Views: 1.7ms | ActiveRecord: 75.5ms | Allocations: 46037)
+
+
+[ActiveJob] [PhotoQualityJob] [9a6f1f31-6a0a-49be-84a2-360078fc3663] Performing PhotoQualityJob (Job ID: 9a6f1f31-6a0a-49be-84a2-360078fc3663) from Async(default) enqueued at 2020-10-27T16:58:13Z with arguments: 9
+[ActiveJob] [PhotoQualityJob] [9a6f1f31-6a0a-49be-84a2-360078fc3663]   [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+[ActiveJob] [PhotoQualityJob] [9a6f1f31-6a0a-49be-84a2-360078fc3663]   ↳ app/jobs/photo_quality_job.rb:5:in `perform'
+[ActiveJob] [PhotoQualityJob] [9a6f1f31-6a0a-49be-84a2-360078fc3663] Error performing PhotoQualityJob (Job ID: 9a6f1f31-6a0a-49be-84a2-360078fc3663) from Async(default) in 407.83ms: NoMethodError (undefined method `chomp' for nil:NilClass):
+/home/norman/lahaus-api/app/jobs/photo_quality_job.rb:8:in `perform'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:40:in `block in perform_now'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:112:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/i18n-1.8.5/lib/i18n.rb:313:in `with_locale'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/core_ext/time/zones.rb:66:in `use_zone'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/timezones.rb:9:in `block (2 levels) in <module:Timezones>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:25:in `block (4 levels) in <module:Logging>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/notifications.rb:180:in `block in instrument'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/notifications.rb:180:in `instrument'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:24:in `block (3 levels) in <module:Logging>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:45:in `block in tag_logger'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/tagged_logging.rb:80:in `block in tagged'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/tagged_logging.rb:28:in `tagged'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/tagged_logging.rb:80:in `tagged'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:45:in `tag_logger'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/logging.rb:21:in `block (2 levels) in <module:Logging>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:139:in `run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:39:in `perform_now'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:25:in `block in execute'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:112:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/railtie.rb:43:in `block (4 levels) in <class:Railtie>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/reloader.rb:72:in `block in wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/reloader.rb:71:in `wrap'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/railtie.rb:42:in `block (3 levels) in <class:Railtie>'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `instance_exec'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:121:in `block in run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activesupport-6.0.3.3/lib/active_support/callbacks.rb:139:in `run_callbacks'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/execution.rb:23:in `execute'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/activejob-6.0.3.3/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:363:in `run_task'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:352:in `block (3 levels) in create_worker'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `loop'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `block (2 levels) in create_worker'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `catch'
+/home/norman/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0/gems/concurrent-ruby-1.1.7/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block in create_worker'
+Started POST "/api/v1/login" for 127.0.0.1 at 2020-10-28 20:16:12 -0500
+  [1m[35m (23.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::UsersController#login as JSON
+  Parameters: {"email"=>"ejemplo2@mail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"ejemplo2@mail.com"}}
+  [1m[36mUser Load (23.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ejemplo2@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:63:in `login'
+Completed 200 OK in 314ms (Views: 0.4ms | ActiveRecord: 87.6ms | Allocations: 7665)
+
+
+Started DELETE "/api/v1/users/2" for 127.0.0.1 at 2020-10-28 20:16:54 -0500
+Processing by Api::V1::UsersController#destroy as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:25:in `destroy'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Load (106.8ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Destroy (45.8ms)[0m  [1m[31mDELETE FROM "properties" WHERE "properties"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+Completed 404 Not Found in 321ms (Views: 0.2ms | ActiveRecord: 163.9ms | Allocations: 39890)
+
+
+Started DELETE "/api/v1/users/2" for 127.0.0.1 at 2020-10-28 20:18:11 -0500
+Processing by Api::V1::UsersController#destroy as JSON
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:25:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Load (0.3ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."user_id" = $1[0m  [["user_id", 2]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."property_id" = $1[0m  [["property_id", 2]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Destroy (0.4ms)[0m  [1m[31mDELETE FROM "properties" WHERE "properties"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[35m (22.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+Completed 204 No Content in 114ms (Views: 0.4ms | ActiveRecord: 33.1ms | Allocations: 49719)
+
+
+Started POST "/api/v1/login" for 127.0.0.1 at 2020-10-28 20:18:59 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::UsersController#login as JSON
+  Parameters: {"email"=>"ejemplo3@mail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"ejemplo3@mail.com"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ejemplo3@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:63:in `login'
+Completed 200 OK in 250ms (Views: 0.5ms | ActiveRecord: 4.9ms | Allocations: 7665)
+
+
+Started DELETE "/api/v1/users/3" for 127.0.0.1 at 2020-10-28 20:19:16 -0500
+Processing by Api::V1::UsersController#destroy as JSON
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:25:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."user_id" = $1[0m  [["user_id", 3]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."property_id" = $1[0m  [["property_id", 3]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Destroy (0.6ms)[0m  [1m[31mDELETE FROM "properties" WHERE "properties"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[35m (22.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+Completed 204 No Content in 89ms (Views: 0.4ms | ActiveRecord: 31.3ms | Allocations: 47421)
+
+
+Started POST "/api/v1/login" for 127.0.0.1 at 2020-10-28 20:21:57 -0500
+Processing by Api::V1::UsersController#login as JSON
+  Parameters: {"email"=>"ejemplo4@mail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"ejemplo4@mail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ejemplo4@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:63:in `login'
+Completed 200 OK in 248ms (Views: 0.4ms | ActiveRecord: 3.7ms | Allocations: 6566)
+
+
+Started DELETE "/api/v1/users/4" for 127.0.0.1 at 2020-10-28 20:22:19 -0500
+Processing by Api::V1::UsersController#destroy as JSON
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:25:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."user_id" = $1[0m  [["user_id", 4]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."property_id" = $1[0m  [["property_id", 4]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Destroy (0.4ms)[0m  [1m[31mDELETE FROM "properties" WHERE "properties"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[35m (22.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+Completed 204 No Content in 81ms (Views: 0.5ms | ActiveRecord: 29.4ms | Allocations: 40879)
+
+
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2[0m  [["email", "ejemplo1@mail.com"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2[0m  [["email", "ejemplo2@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (102.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "full_name", "cellphone") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "ejemplo2@mail.com"], ["password_digest", "$2a$12$PscmQ/x5pU3px0xVtvr65enA2EKe3uMxTLVtEziMLZzAyqE0Hrk6m"], ["created_at", "2020-10-29 01:23:04.102101"], ["updated_at", "2020-10-29 01:23:04.102101"], ["full_name", "pedro"], ["cellphone", "3001234567"]]
+  [1m[35m (21.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2[0m  [["email", "ejemplo3@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "full_name", "cellphone") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "ejemplo3@mail.com"], ["password_digest", "$2a$12$pfw6zAC6/eEFd6H4bcauNOWo.cB/tto5PJQxiZv4y.YWO26COVwOm"], ["created_at", "2020-10-29 01:23:04.509428"], ["updated_at", "2020-10-29 01:23:04.509428"], ["full_name", "lucas"], ["cellphone", "3001234567"]]
+  [1m[35m (19.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2[0m  [["email", "ejemplo4@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at", "full_name", "cellphone") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["email", "ejemplo4@mail.com"], ["password_digest", "$2a$12$qpVrkTsvVZ1wTjvqLM3.s.35q5J5lL7Cf6IzST709yXUHw0yNajRW"], ["created_at", "2020-10-29 01:23:04.772651"], ["updated_at", "2020-10-29 01:23:04.772651"], ["full_name", "mateo"], ["cellphone", "3001234567"]]
+  [1m[35m (23.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2[0m  [["email", "ejemplo5@mail.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) LIMIT $2[0m  [["email", "admin@mail.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProperty Create (22.8ms)[0m  [1m[32mINSERT INTO "properties" ("built_type", "hood", "city", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["built_type", "Casa"], ["hood", "Belen"], ["city", "Medellin"], ["user_id", 1], ["created_at", "2020-10-29 01:23:05.315888"], ["updated_at", "2020-10-29 01:23:05.315888"]]
+  [1m[35m (24.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mProperty Create (0.6ms)[0m  [1m[32mINSERT INTO "properties" ("built_type", "hood", "city", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["built_type", "Casa"], ["hood", "Belen"], ["city", "Medellin"], ["user_id", 5], ["created_at", "2020-10-29 01:23:05.409773"], ["updated_at", "2020-10-29 01:23:05.409773"]]
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPhoto Create (19.1ms)[0m  [1m[32mINSERT INTO "photos" ("url", "property_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["url", "http://url.com"], ["property_id", 1], ["created_at", "2020-10-29 01:23:05.438027"], ["updated_at", "2020-10-29 01:23:05.438027"]]
+  [1m[35m (27.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mPhoto Create (0.7ms)[0m  [1m[32mINSERT INTO "photos" ("url", "property_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["url", "http://url.com"], ["property_id", 1], ["created_at", "2020-10-29 01:23:05.492008"], ["updated_at", "2020-10-29 01:23:05.492008"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.6ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProperty Load (0.5ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/api/v1/login" for 127.0.0.1 at 2020-10-28 20:23:48 -0500
+Processing by Api::V1::UsersController#login as JSON
+  Parameters: {"email"=>"ejemplo1@mail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"ejemplo1@mail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ejemplo1@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:63:in `login'
+Completed 200 OK in 241ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 1042)
+
+
+Started DELETE "/api/v1/users/4" for 127.0.0.1 at 2020-10-28 20:24:23 -0500
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::UsersController#destroy as JSON
+  Parameters: {"user_id"=>"4"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+Completed 404 Not Found in 19ms (ActiveRecord: 4.4ms | Allocations: 12909)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=4):
+  
+app/controllers/application_controller.rb:38:in `correct_user'
+Started DELETE "/api/v1/users/1" for 127.0.0.1 at 2020-10-28 20:26:45 -0500
+Processing by Api::V1::UsersController#destroy as JSON
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:25:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Load (0.4ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."property_id" = $1[0m  [["property_id", 7]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Destroy (0.6ms)[0m  [1m[31mDELETE FROM "properties" WHERE "properties"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."property_id" = $1[0m  [["property_id", 6]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Destroy (0.5ms)[0m  [1m[31mDELETE FROM "properties" WHERE "properties"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."property_id" = $1[0m  [["property_id", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.4ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 10]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mPhoto Destroy (0.3ms)[0m  [1m[31mDELETE FROM "photos" WHERE "photos"."id" = $1[0m  [["id", 11]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Destroy (0.4ms)[0m  [1m[31mDELETE FROM "properties" WHERE "properties"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[35m (14.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+Completed 204 No Content in 93ms (Views: 0.2ms | ActiveRecord: 26.6ms | Allocations: 62867)
+
+
+Started POST "/api/v1/login" for 127.0.0.1 at 2020-10-28 20:29:41 -0500
+Processing by Api::V1::UsersController#login as JSON
+  Parameters: {"email"=>"ejemplo2@mail.com", "password"=>"[FILTERED]", "user"=>{"email"=>"ejemplo2@mail.com"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ejemplo2@mail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:63:in `login'
+Completed 200 OK in 256ms (Views: 0.4ms | ActiveRecord: 4.3ms | Allocations: 6589)
+
+
+Started DELETE "/api/v1/users/7" for 127.0.0.1 at 2020-10-28 20:30:06 -0500
+Processing by Api::V1::UsersController#destroy as JSON
+  Parameters: {"user_id"=>"7"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:25:in `logged_in?'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:38:in `correct_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:25:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mProperty Load (0.2ms)[0m  [1m[34mSELECT "properties".* FROM "properties" WHERE "properties"."user_id" = $1[0m  [["user_id", 7]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+  [1m[35m (26.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:26:in `destroy'
+Completed 204 No Content in 48ms (Views: 0.4ms | ActiveRecord: 29.8ms | Allocations: 11035)
+
+

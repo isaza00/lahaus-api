@@ -24,7 +24,7 @@ class Api::V1::UsersController < ApplicationController
     begin
       user = User.find(params[:user_id])
       if user.destroy
-        render json: { users: user }, status: 204
+        render body: nil, status: 204
       else
         render json: { errors: user.errors.messages }, status: 422
       end
