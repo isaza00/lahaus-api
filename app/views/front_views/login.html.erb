@@ -214,7 +214,11 @@
           const userId = result.users.id;
           const token = result.token;
           window.location.reload();
-          window.location.href = '/index?userId=' + userId + '&token=' + token;
+          const expires = new Date();
+          expires.setTime(expires.getTime() + (365 * 24 * 60 * 60 * 1000));
+          document.cookie = "token=" + token + ';expires=' + expires.toUTCString(); + ';path=/';
+          document.cookie = "userId=" + userId + ';expires=' + expires.toUTCString(); + ';path=/';
+          window.location.href = '/index';
         }
       });
     });

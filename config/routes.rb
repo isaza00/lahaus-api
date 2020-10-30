@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
-  root 'front_views#index'
+  root to: redirect("/index")
   get '/login', to: 'front_views#login'
   get '/index', to: 'front_views#index'
 

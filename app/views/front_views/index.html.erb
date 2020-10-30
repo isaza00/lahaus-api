@@ -14,9 +14,11 @@
 
 <script>
 const searchParams = new URLSearchParams(window.location.search);
-  const token = searchParams.get('token');
-  const userId = searchParams.get('userId');
-  if (!token) {
+  let userId = document.cookie.match('(^|;) ?' + 'userId' + '=([^;]*)(;|$)');
+  let token = document.cookie.match('(^|;) ?' + 'token' + '=([^;]*)(;|$)');
+  token = (token) ? token[2] : null;
+  userId = (userId) ? userId[2] : null;
+  if (!token || !userId) {
     window.location.href = '/login';
   }
 $(document).ready(function(){

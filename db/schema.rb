@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 2020_10_27_220030) do
     t.string "apt"
     t.string "hood"
     t.string "city"
-    t.string "elevator"
     t.string "private_area"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -43,6 +42,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_220030) do
     t.string "build_area"
     t.string "social_class"
     t.string "state"
+    t.boolean "elevator"
     t.string "common_areas"
     t.string "property_tax"
     t.string "rooms"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 2020_10_27_220030) do
     t.boolean "mortgage"
     t.index ["built_type"], name: "index_properties_on_built_type"
     t.index ["city"], name: "index_properties_on_city"
-    t.index ["elevator"], name: "index_properties_on_elevator"
     t.index ["hood"], name: "index_properties_on_hood"
     t.index ["price"], name: "index_properties_on_price"
     t.index ["user_id"], name: "index_properties_on_user_id"

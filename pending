@@ -40,3 +40,6 @@ Done 10. root envia a /index
 12. implementar funcion de change password
 Done 13. agregar campo de location al modelo de photo
 14. poner begin and rescue en methodo de correct user en caso de que User.find retorne error
+Done 15. poner token y userId en cookie y no en url, permitir logueo automatico si hay cookie preexistente.
+15. quitar o arreglar paginacion en index
+16. implementar logout, simplemente borrar cookies de userId and token
