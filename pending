@@ -31,7 +31,7 @@ lahaus
 )
 Done 4. model test photos - sebastian
 Done 5. controller test photos -norman
-6. model test user new attr (santiago)
+Done 6. model test user new attr (santiago)
 Done 7. agregar rutas para paginas estaticas
 Done 8. arreglar el pequeño flash visual cuando se entra a admin sin loguear
 9. agregar header con token para borrar propiedad
