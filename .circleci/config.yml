@@ -19,7 +19,7 @@ jobs:
           command: |
             gem install bundler -v 2.0.1
             bundle install
-            sudo service postgresql-10.14 start
+            sudo service postgresql start
             rails db:create
             rails db:migrate
       - ruby/bundle-install
