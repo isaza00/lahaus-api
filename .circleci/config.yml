@@ -8,9 +8,6 @@ jobs:
       - image: circleci/ruby:2.5.1
         environment:
           BUNDLER_VERSION: 2.0.1
-      - image: circleci/postgres:10.14
-        environment:
-          POSTGRES_HOST_AUTH_METHOD=trust
     executor: ruby/default
     steps:
       - checkout
@@ -19,7 +16,9 @@ jobs:
           command: |
             gem install bundler -v 2.0.1
             bundle install
-            service postgresql start
+            sudo apt-get install postgresql
+            sudo -u postgres createuser test
+            sudo -u postgres createdb lahaus_api_test
             rails db:create
             rails db:migrate
       - ruby/bundle-install
