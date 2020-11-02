@@ -21,7 +21,6 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install postgresql
-            sudo -u postgres createuser test
             sudo -u postgres createdb lahaus_api_test
             rails db:create
             rails db:migrate
