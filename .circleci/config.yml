@@ -10,7 +10,7 @@ jobs:
           BUNDLER_VERSION: 2.0.1
       - image: circleci/postgres:10.14
         environment:
-          ALLOW_EMPTY_PASSWORD=yes
+          POSTGRES_HOST_AUTH_METHOD=trust
     executor: ruby/default
     steps:
       - checkout
