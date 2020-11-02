@@ -10,8 +10,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: |
+          command:
           gem install bundler -v 2.1.4
-          bundle -v
       - ruby/bundle-install
 
