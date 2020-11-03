@@ -50,11 +50,6 @@ class PropertyTest < ActiveSupport::TestCase
     assert property.save
   end
 
-  test "Should not create a property without a valid elevator attribute" do
-    property = Property.new(user_id:99, build_area:"hola", elevator:"5")
-    assert_not property.save
-  end
-
   test "Should create a property with a common_areas attribute" do
     property = Property.new(user_id:99, build_area:"hola", common_areas:"muchisimas")
     assert property.save
