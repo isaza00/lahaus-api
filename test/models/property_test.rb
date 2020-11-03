@@ -5,12 +5,12 @@ class PropertyTest < ActiveSupport::TestCase
     @property = Property.new(user_id: 99, city:"Medellin", hood:"Belen", built_type:"Casa")
   end
 
-  test "Should not new a property without a user_id" do
+  test "Should not save a property without a user_id" do
     property = Property.new(city:"Medellin", hood:"Belen", built_type:"Casa")
     assert_not property.save, "Saved a property without user ID"
   end
 
-  test "Should not new a property without the proper built_type" do
+  test "Should not save a property without the proper built_type" do
     property = Property.new(user_id: 99, city:"Pizza", hood:"Belen", built_type:"Pizza")
     assert_not property.save, "Saved a property without an allowed built_type"
   end
@@ -20,9 +20,69 @@ class PropertyTest < ActiveSupport::TestCase
     assert property.save, "Saved a property without a built_type"
   end
 
-  test "Should not new a property because admon exceeds the maximum valor" do
+  test "Should not save the property because admon exceeds the maximum valor" do
     property = Property.new(user_id:99, admon:5000000000000)
     assert_not property.save
+  end
+
+  test "Should not save the property because price exceeds the maximum valor" do
+    property = Property.new(user_id:99, price:77777777777777777777)
+    assert_not property.save
+  end
+
+  test "Should save a property because price is on the minimum-maximum valor" do
+    property = Property.new(user_id:99, price:77777777777)
+    assert property.save
+  end
+
+  test "Should save a property with the proper adress" do
+    property = Property.new(user_id: 99, city:"Pizza", hood:"Belen", address:"Cra 50 bla bla")
+    assert property.save
+  end
+
+  test "Should not save a property without the proper apt" do
+    property = Property.new(user_id: 99, city:"Pizza", hood:"Belen", apt:"asdjadjasdhjasdhjasdjasdhjasdhasj")
+    assert_not property.save
+  end
+
+  test "Should save a property with the proper apt" do
+    property = Property.new(user_id: 99, city:"Pizza", hood:"Belen", apt:"5")
+    assert property.save
+  end
+
+  test "Should save a property with the proper private_area" do
+    property = Property.new(user_id: 99, city:"55555555", private_area:"SUper si")
+    assert property.save
+  end
+
+  test "Should not save a property without the proper half_bathrooms" do
+    property = Property.new(user_id: 99, city:"55555555", half_bathrooms:"De locos")
+    assert_not property.save
+  end
+
+  test "Should  save a property with the proper half_bathrooms" do
+    property = Property.new(user_id: 99, city:"55555555", half_bathrooms:"2")
+    assert property.save
+  end
+
+  test "Should not save a property without the proper parking_lot" do
+    property = Property.new(user_id: 99, city:"55555555", parking_lot:"Nah De locos")
+    assert_not property.save
+  end
+
+  test "Should save a property with the proper parking_lot" do
+    property = Property.new(user_id: 99, city:"55555555", parking_lot:"20")
+    assert property.save
+  end
+
+  test "Should not save a property without the proper rent" do
+    property = Property.new(user_id: 99, city:"55555555", rent:"500000000000000000000000000000000000000")
+    assert_not property.save
+  end
+
+  test "Should save a property with the proper rent" do
+    property = Property.new(user_id: 99, city:"55555555", rent:"5000000")
+    assert property.save
   end
 
   test "Should create a property with admon" do
