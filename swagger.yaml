@@ -1,0 +1,638 @@
+openapi: 3.0.1
+info:
+  title: LaHaus API
+  description: API LaHaus
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+- url: https://lahaus.com/api/v1/
+- url: http://lahaus.com/api/v1/
+tags:
+- name: logIn
+  description: Allows the user to sign in
+- name: signUp
+  description: Allows the user to sign up
+- name: user
+  description: All about registered user
+- name: property
+  description: Access to properties
+- name: photo
+  description: Access to photos
+paths:
+  /login:
+    post:
+      tags:
+      - logIn
+      summary: Logs user into the system
+      description: Logs user into the system
+      operationId: logIn
+      parameters:
+      - name: email
+        in: query
+        description: user's email
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: The password for login in clear text
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Returns a user object and a token
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            Access-Control-Request-Method:
+              description: Requires POST
+              schema:
+                type: string
+                format: str
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties: {}
+                    example:
+                      userObject: null
+                  token:
+                    type: string
+                    example: asdf213fdssa1231
+        401:
+          description: '{ errors:"Invalid username or password" }'
+          content: {}
+  /signup:
+    post:
+      tags:
+      - signUp
+      summary: Create user
+      description: Creates a new user in the database
+      operationId: createUser
+      parameters:
+      - name: email
+        in: query
+        description: email of the user
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: password of the user
+        required: true
+        schema:
+          type: string
+      - name: full_name
+        in: query
+        description: full name of the user
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                cellphone:
+                  type: string
+                id_card:
+                  type: string
+        required: false
+      responses:
+        default:
+          description: ok
+          content: {}
+      x-codegen-request-body-name: attributes
+  /users:
+    post:
+      tags:
+      - signUp
+      summary: Create user
+      description: Creates a new user in the database
+      operationId: createsUser
+      parameters:
+      - name: email
+        in: query
+        description: email of the user
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        description: password of the user
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: object
+              properties:
+                cellphone:
+                  type: string
+                id_card:
+                  type: string
+                full_name:
+                  type: string
+        required: false
+      responses:
+        201:
+          description: created
+          content: {}
+        422:
+          description: '{ errors:"Error object" }'
+          content: {}
+              
+  /users/{userid}:
+    get:
+      tags:
+      - user
+      summary: Get user by user id
+      security:
+        - BearerAuth: []
+      operationId: getUserById
+      parameters:
+      - name: userid
+        in: path
+        description: The user ID to be seen
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+    put:
+      tags:
+      - user
+      summary: Updated user
+      security:
+        - BearerAuth: []
+      description: This can only be done by the logged in user for his own user
+      operationId: updateUser
+      parameters:
+      - name: userid
+        in: path
+        description: name that need to be updated
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Updated user object
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/User'
+        required: false
+      responses:
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+        422:
+          description: '{ errors: "Error object" }'
+          content: {}
+    delete:
+      tags:
+      - user
+      summary: Delete user
+      security:
+        - BearerAuth: []
+      description: This can only be done by the logged in user for his own user
+      operationId: deleteUser
+      parameters:
+      - name: userid
+        in: path
+        description: The name that needs to be deleted
+        required: true
+        schema:
+          type: string
+      responses:
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+        422:
+          description: '{ errors: "Error object" }'
+          content: {}
+  /users/{user_id}/properties:
+    get:
+      tags:
+      - property
+      summary: Gets all the properties from a specific user
+      security:
+        - BearerAuth: []
+      operationId: getProperties
+      parameters:
+      - name: user_id
+        in: path
+        description: user id
+        required: true
+        schema:
+          type: string
+      responses:
+        201:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+    post:
+      tags:
+      - property
+      summary: Create property by user id
+      security:
+        - BearerAuth: []
+      operationId: createPropertyById
+      parameters:
+      - name: user_id
+        in: path
+        description: user id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The attributes of the property of the user
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Property'
+        required: false
+      responses:
+        201:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+        422:
+          description: '{ errors: "Error object" }'
+          content: {}
+      x-codegen-request-body-name: attributes
+  /users/{user_id}/properties/{property_id}:
+    get:
+      tags:
+      - property
+      summary: Get a property by its id
+      security:
+        - BearerAuth: []
+      operationId: getProperty
+      parameters:
+      - name: user_id
+        in: path
+        description: user id
+        required: true
+        schema:
+          type: string
+      - name: property_id
+        in: path
+        description: property_id
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        404:
+          description: User or property not found
+          content: {}
+    put:
+      tags:
+      - property
+      summary: Updated property by userid and propertyid
+      security:
+        - BearerAuth: []
+      description: This can only be done by the logged in user and his own properties
+      operationId: updateProperty
+      parameters:
+      - name: user_id
+        in: path
+        description: user id
+        required: true
+        schema:
+          type: string
+      - name: property_id
+        in: path
+        description: property id that need to be updated
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The attributes of the property of the user
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Property'
+        required: false
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Property'
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+        422:
+          description: '{ errors: "Error object" }'
+          content: {}
+      x-codegen-request-body-name: attributes
+    delete:
+      tags:
+      - property
+      summary: Delete property by userid and propertyid
+      security:
+        - BearerAuth: []
+      description: This can only be done by the logged in user.
+      operationId: deleteProperty
+      parameters:
+      - name: user_id
+        in: path
+        description: The name that needs to be deleted
+        required: true
+        schema:
+          type: string
+      - name: property_id
+        in: path
+        description: property id that need to be updated
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content: {}
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+        422:
+          description: '{ errors: "Error object" }'
+          content: {}
+  /users/{user_id}/properties/{property_id}/photos:
+    get:
+      tags:
+      - photo
+      summary: Gets all the property photos by the property id
+      security:
+        - BearerAuth: []
+      description: Displays all the available URLs
+      operationId: getPhotos
+      parameters:
+      - name: user_id
+        in: path
+        description: user id
+        required: true
+        schema:
+          type: string
+      - name: property_id
+        in: path
+        description: property id
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+  /users/{user_id}/properties/{property_id}/photos/{photo_id}:
+    get:
+      tags:
+      - photo
+      summary: Gets a specific photo
+      security:
+        - BearerAuth: []
+      description: Displays the URL assigned for the photo id
+      operationId: getPhoto
+      parameters:
+      - name: user_id
+        in: path
+        description: user id
+        required: true
+        schema:
+          type: string
+      - name: property_id
+        in: path
+        description: property id
+        required: true
+        schema:
+          type: string
+      - name: photo_id
+        in: path
+        description: photo id
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+    post:
+      tags:
+      - photo
+      summary: 'Create photo'
+      security:
+        - BearerAuth: []
+      description: Creathe the photo id by the url given
+      operationId: createPhotoById
+      parameters:
+      - name: user_id
+        in: path
+        description: user id
+        required: true
+        schema:
+          type: string
+      - name: property_id
+        in: path
+        description: property id
+        required: true
+        schema:
+          type: string
+      - name: photo_id
+        in: path
+        description: photo id
+        required: true
+        schema:
+          type: string
+      responses:
+        201:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+        422:
+          description: '{ errors: "Error object" }'
+          content: {}
+    delete:
+      tags:
+      - photo
+      summary: Deletes a specific photo
+      security:
+        - BearerAuth: []
+      description: Deletes a photo URL from the database
+      operationId: deletePhoto
+      parameters:
+      - name: user_id
+        in: path
+        description: user id
+        required: true
+        schema:
+          type: string
+      - name: property_id
+        in: path
+        description: property id
+        required: true
+        schema:
+          type: string
+      - name: photo_id
+        in: path
+        description: photo id
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content: {}
+        404:
+          description: '{ errors: "Error object" }'
+          content: {}
+        422:
+          description: '{ errors: "Error object" }'
+          content: {}
+
+components:
+  schemas:
+    Property:
+      type: object
+      properties:
+        built_type:
+          type: string
+        hood:
+          type: string
+        city:
+          type: string
+        apt:
+          type: string
+        price:
+          type: string
+        address:
+          type: string
+        admon:
+          type: string
+        build_area:
+          type: string
+        private_area:
+          type: string
+        social_class:
+          type: string
+        state:
+          type: string
+        elevator:
+          type: boolean
+        common_areas:
+          type: string
+        property_tax:
+          type: string
+        project:
+          type: string
+        rooms:
+          type: string
+        bathrooms:
+          type: string
+        half_bathrooms:
+          type: string
+        parking_lot:
+          type: string
+        utility_room:
+          type: boolean
+        empty_property:
+          type: boolean
+        inhabitants:
+          type: boolean
+        rent:
+          type: string
+        rent_desition:
+          type: boolean
+        mortgage:
+          type: boolean
+      xml:
+        name: Order
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        full_name:
+          type: string
+        cellphone:
+          type: string
+        id_card:
+          type: string
+        isadmin:
+          type: boolean
+      xml:
+        name: User
+    Photo:
+      type: object
+      properties:
+        url:
+          type: string
+        location:
+          type: string
+        accepted_lum:
+          type: boolean
+        accepted_foc:
+          type: boolean
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

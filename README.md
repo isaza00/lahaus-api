@@ -2,14 +2,39 @@
 
 rails api template with JWT
 
-you must be authorized to perform any action,
-except POST api/v1/users/ and POST api/v1/login
+To start using this API in development mode:
 
-include header:
+1. Clone this repository to your local machine
+2. Install postgress if necessary
+3. Create postgress user if necessary
+4. Run: rails db:create
+5. Run: rails db:migrate
+6. Run: rails db:seed
+7. Run: Rails test. all test should pass
+
+To start consuming the API:
+
+In devolpment mode:
+Run: rails s
+root url: localhost:3000/
+
+In Heroku:
+root url: http://lahaus.herokuapp.com/
+
+You must be authorized to perform any action,
+except POST /api/v1/signup and POST /api/v1/login.
+
+To get JWT-token as json response,
+signup or login with params: {email, password}
+
+After signup or login include header:
 "Authorization: Bearer <JWT-token>"
 
-to get JWT-token as json response,
-create new user or login, params: {email, password}
+To see routes, schemas and aditional information for
+this API, use file swagger.yml at the root of this
+repository, and open it on https://editor.swagger.io/
 
-![Swagger image](https://imgur.com/qbUxSnC.png)
-![Swagger image2](https://imgur.com/YqkxCrp.png)
+Created by:
+Norman Isaza https://github.com/isaza00/
+Sebastian Escobar https://github.com/katorea132
+Santiago Arboleda https://github.com/Blazeker
