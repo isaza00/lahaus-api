@@ -15,8 +15,9 @@ To start using this API in development mode:
 To start consuming the API:
 
 In devolpment mode:
-Run: rails s
 root url: localhost:3000/
+
+Run: rails s
 
 In Heroku:
 root url: http://lahaus.herokuapp.com/
