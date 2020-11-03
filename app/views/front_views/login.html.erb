@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   </head>
   <style>
   @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -189,8 +190,10 @@
           <img src="https://lahaus.imgix.net/static/branding/logo-lahaus-full.svg?auto=compress,format" >
             <form class="login-form">
               <input id="mail" type="text" placeholder="email"/>
-              <input id="password" type="password" placeholder="password"/>
-              <button id="login-btn">login</button>
+              <input id="password" type="password" placeholder="password" />
+              <span id="alert">  </span>
+              <button id="login-btn" style="margin-top: 17px;">login</button>
+
             </form>
           </div>
         </div>
@@ -219,6 +222,12 @@
           document.cookie = "token=" + token + ';expires=' + expires.toUTCString(); + ';path=/';
           document.cookie = "userId=" + userId + ';expires=' + expires.toUTCString(); + ';path=/';
           window.location.href = '/index';
+        },
+        error: function(jqxhr, textstatus, errorthrown) {
+          $('#errorbox').remove();
+          $('#alert').append(
+          '<span id="errorbox" class="alert alert-danger" role="alert"> Usuario o contraseña incorrecta </span>'
+        );
         }
       });
     });

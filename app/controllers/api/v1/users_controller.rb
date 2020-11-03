@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
     begin
       user = User.find(params[:user_id])
       render json: { users: user }, status: :ok
-    rescue
+    rescue => e
       render json: { errors: e.message}, status: 404
     end
   end

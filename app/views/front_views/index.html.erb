@@ -197,8 +197,8 @@ table.table .avatar {
                     <div class="col-sm-5">
                         <h2 class="title"></h2>
                     </div>
-                    <div class="col-sm-7">
-                        
+                    <div class="col-sm-7" id="logout">
+                        <button type="button" class="btn btn-info btn-lg"> Cerrar sesión </button>
                     </div>
                 </div>
             </div>
@@ -217,18 +217,6 @@ table.table .avatar {
                     
                 </tbody>
             </table>
-            <div class="clearfix">
-                <div class="hint-text">Mostrando <b>5</b> de <b>25</b> entradas</div>
-                <ul class="pagination">
-                    <li class="page-item disabled"><a href="#">Anterior</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link">Siguiente</a></li>
-                </ul>
-            </div>
         </div>
     </div>
 </div>
@@ -269,10 +257,16 @@ $(function () {
         $.ajax({
           type: 'DELETE',
           url: url + '/' + dataId,
+          headers: { Authorization: 'Bearer ' + token },
           success: function (result) {
             console.log(result);
           }
         });
+      });
+      $('#logout').click(function (event) {
+        document.cookie = "token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT" 
+        document.cookie = "userId= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+        window.location.href = '/login';
       });
     }
   });
