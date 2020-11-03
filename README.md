@@ -29,7 +29,7 @@ To get JWT-token as json response,
 signup or login with params: {email, password}
 
 After signup or login include header:
-"Authorization: Bearer <JWT-token>"
+"Authorization: Bearer jwt-token"
 
 To see routes, schemas and aditional information for
 this API, use file swagger.yml at the root of this
