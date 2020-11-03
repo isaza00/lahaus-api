@@ -22,7 +22,7 @@ In Heroku:
 root url: http://lahaus.herokuapp.com/
 
 You must be authorized to perform any action,
-except POST api/v1/signup and POST api/v1/login.
+except POST /api/v1/signup and POST /api/v1/login.
 
 To get JWT-token as json response,
 signup or login with params: {email, password}
